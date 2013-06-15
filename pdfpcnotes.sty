@@ -1,0 +1,32 @@
+\ProvidesPackage{pdfpcnotes}
+
+% create a new file handle
+\newwrite\pdfpcnotesfile
+
+% open file on \begin{document}
+\AtBeginDocument{%
+	\immediate\openout\pdfpcnotesfile\jobname.pdfpc\relax
+	\immediate\write\pdfpcnotesfile{[notes]}
+}
+% define a # http://tex.stackexchange.com/a/37757/10327
+\begingroup
+	\catcode`\#=12
+	\gdef\hashchar{#}%
+\endgroup
+% define command \pnote{} that works exactly like not but
+% additionally writes notes to file in pdfpc readable format
+\newcommand{\pnote}[1]{%
+	% keep normal notes working
+	\note{#1}%
+	% write notes to file
+	\begingroup
+		\let\#\hashchar
+		\immediate\write\pdfpcnotesfile{\#\#\# \theframenumber}%
+		\immediate\write\pdfpcnotesfile{\unexpanded{#1}}%
+	\endgroup
+}
+% close file on \begin{document}
+\AtEndDocument{%
+	\immediate\closeout\pdfpcnotesfile
+}
+
