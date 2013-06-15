@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pdfpc-latex-notes by cebe</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pdfpc-latex-notes</h1>
+        <p>Latex Package that allows creating a pdfpc compatible notes file directly from your latex presentation \notes.</p>
+
+        <p class="view"><a href="https://github.com/cebe/pdfpc-latex-notes">View the Project on GitHub <small>cebe/pdfpc-latex-notes</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/cebe/pdfpc-latex-notes/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/cebe/pdfpc-latex-notes/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/cebe/pdfpc-latex-notes">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="pdfpc-latex-notes" class="anchor" href="#pdfpc-latex-notes"><span class="octicon octicon-link"></span></a>pdfpc-latex-notes</h1>
+
+<p>This is a Latex Package that allows creating <a href="http://davvil.github.io/pdfpc/">pdfpc</a>
+compatible notes file directly from your latex presentation <code>\note</code>s.</p>
+
+<p>It was created as a result from a <a href="http://tex.stackexchange.com/questions/119191/extract-all-note-tags-from-beamer-as-a-simple-text-file/119267#119267">question on stackoverflow</a>.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Download <a href="https://raw.github.com/cebe/pdfpc-latex-notes/master/pdfpcnotes.sty">pdfpcnotes.sty</a>
+from github and put it somewhere where latex can find it.<br>
+The same directory as your <code>.tex</code> file will work.</p>
+
+<p>Add <code>\usepackage{pdfpcnotes}</code> somewhere before <code>\begin{document}</code> in your <code>.tex</code>-file.</p>
+
+<p>You can then use the <code>\pnote{}</code> command like you used <code>\note{}</code> before.
+Behavior will be the same but it will additionally write notes to file in pdfpc readable format.</p>
+
+<p>When running for example <code>pdflatex</code> you will end up with an additional <code>.pdfpc</code> file that
+will automatically be recognized by pdfpc and displays your notes nicely in the notes section on your control screen.</p>
+
+<h2>
+<a name="anything-not-working-yet" class="anchor" href="#anything-not-working-yet"><span class="octicon octicon-link"></span></a>Anything not working yet?</h2>
+
+<ul>
+<li>
+<p>It does not preserve newlines, so everything in a <code>\pnote{}</code> will end up
+in one line of the output file.
+To replace newlines and paragraphs you may use the following commands:</p>
+
+<pre><code>  sed -i "s/\\\\\\\\/\n/g" slides.pdfpc
+  sed -i "s/\\\\par/\n\n/g" slides.pdfpc
+</code></pre>
+</li>
+<li><p>Multiple <code>\pnote{}</code> commands per frame are not working right now. This should be easy to fix.
+Will try to make it work soon but are also happy for a pull request :-)</p></li>
+</ul><h2>
+<a name="contact" class="anchor" href="#contact"><span class="octicon octicon-link"></span></a>Contact</h2>
+
+<p>I'm happy to receive your feedback!
+Drop me a line to <a href="mailto:mail@cebe.cc">mail@cebe.cc</a> or write in github issue tracker if you find a bug.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/cebe">cebe</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
