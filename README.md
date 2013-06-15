@@ -1,9 +1,10 @@
 pdfpc-latex-notes
 =================
 
-Latex Package that allows creating [pdfpc](http://davvil.github.io/pdfpc/) notes file directly from latex presentation.
+This is a Latex Package that allows creating [pdfpc](http://davvil.github.io/pdfpc/)
+compatible notes file directly from your latex presentation `\note`s.
 
-This was created as a result from a [question on stackoverflow](http://tex.stackexchange.com/questions/119191/extract-all-note-tags-from-beamer-as-a-simple-text-file/119267#119267).
+It was created as a result from a [question on stackoverflow](http://tex.stackexchange.com/questions/119191/extract-all-note-tags-from-beamer-as-a-simple-text-file/119267#119267).
 
 Usage
 -----
