@@ -13,17 +13,27 @@
 	\catcode`\#=12
 	\gdef\hashchar{#}%
 \endgroup
-% define command \pnote{} that works exactly like not but
+
+
+\def\lastframenumber{0}
+
+% define command \pnote{} that works like note but
 % additionally writes notes to file in pdfpc readable format
 \newcommand{\pnote}[1]{%
 	% keep normal notes working
 	\note{#1}%
-	% write notes to file
-	\begingroup
-		\let\#\hashchar
-		\immediate\write\pdfpcnotesfile{\#\#\# \theframenumber}%
-		\immediate\write\pdfpcnotesfile{\unexpanded{#1}}%
-	\endgroup
+
+	% if frame changed - write a new header
+	\ifdim\theframenumber pt>\lastframenumber pt
+		\let\lastframenumber\theframenumber
+		\begingroup
+			\let\#\hashchar
+			\immediate\write\pdfpcnotesfile{\#\#\# \theframenumber}%
+		\endgroup
+	\fi
+
+	% write note to file
+	\immediate\write\pdfpcnotesfile{\unexpanded{#1}}%
 }
 % close file on \begin{document}
 \AtEndDocument{%
