@@ -34,9 +34,6 @@ Anything not working yet?
       sed -i "s/\\\\par/\n\n/g" slides.pdfpc
   ```
 
-- Multiple `\pnote{}` commands per frame are not working right now. This should be easy to fix.
-  Will try to make it work soon but are also happy for a pull request :-)
-
 Contact
 -------
 
