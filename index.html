@@ -63,8 +63,8 @@ will automatically be recognized by pdfpc and displays your notes nicely in the 
 in one line of the output file.
 To replace newlines and paragraphs you may use the following commands:</p>
 
-<pre><code>  sed -i "s/\\\\\\\\/\n/g" slides.pdfpc
-  sed -i "s/\\\\par/\n\n/g" slides.pdfpc
+<pre><code>  sed -i 's/\\\\/\n/g' slides.pdfpc
+  sed -i 's/\\par/\n\n/g' slides.pdfpc
 </code></pre>
 </li>
 <li><p>Multiple <code>\pnote{}</code> commands per frame are not working right now. This should be easy to fix.
