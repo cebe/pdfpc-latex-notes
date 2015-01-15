@@ -30,8 +30,8 @@ Anything not working yet?
   To replace newlines and paragraphs you may use the following commands:
 
   ```
-      sed -i "s/\\\\\\\\/\n/g" slides.pdfpc
-      sed -i "s/\\\\par/\n\n/g" slides.pdfpc
+      sed -i 's/\\\\/\n/g' slides.pdfpc
+      sed -i 's/\\par/\n\n/g' slides.pdfpc
   ```
 
 Contact
