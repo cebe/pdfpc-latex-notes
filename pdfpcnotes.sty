@@ -3,6 +3,9 @@
 	{pdfpcnotes}%
 	[2016/05/04 \space ver 0.2 \space To generate notes to use with pdfpc]
 
+\RequirePackage{forloop}
+\RequirePackage{pdftexcmds}
+
 \RequirePackage{kvoptions}
 \DeclareStringOption{fontsize}[32130]
 \ProcessKeyvalOptions*\relax
@@ -28,7 +31,10 @@
 \endgroup
 
 
-\global\def\lastframenumber{0}
+\global\def\pdfpcnotes@lastframenumber{0}
+\newcounter{pdfpcnotes@currentframenotes}
+\newcounter{pdfpcnotes@checkifnoteexists}
+\newif\ifpdfpcnotes@noteexists
 
 % define command \pnote{} that works like note but
 % additionally writes notes to file in pdfpc readable format
@@ -37,16 +43,37 @@
 	\note{#1}%
 
 	% if frame changed - write a new header
-	\ifdim\theframenumber pt>\lastframenumber pt
-		\global\edef\lastframenumber{\theframenumber}
+	\ifdim\theframenumber pt>\pdfpcnotes@lastframenumber pt
+		\global\edef\pdfpcnotes@lastframenumber{\theframenumber}
+		\setcounter{pdfpcnotes@currentframenotes}{0}
 		\begingroup
 			\let\#\hashchar
 			\immediate\write\pdfpcnotesfile{\#\#\# \theframenumber}%
 		\endgroup
 	\fi
 
-	% write note to file
-	\immediate\write\pdfpcnotesfile{\unexpanded{#1}}%
+	% check if note was already stored
+	\pdfpcnotes@noteexistsfalse
+	\forloop{pdfpcnotes@checkifnoteexists}{0}{%
+		\value{pdfpcnotes@checkifnoteexists} < \value{pdfpcnotes@currentframenotes}%
+	}{
+		\ifnum\pdf@strcmp{\unexpanded{#1}}{\csname pdfpcnotes@currentframenotes@\thepdfpcnotes@checkifnoteexists\endcsname}=0
+			\pdfpcnotes@noteexiststrue
+			\setcounter{pdfpcnotes@checkifnoteexists}{\value{pdfpcnotes@currentframenotes}}
+		\else
+		\fi
+	}
+
+	% and then, only if the note was not stored
+	\ifpdfpcnotes@noteexists
+	\else
+		% add note in stored notes
+		\expandafter\global\expandafter\def\csname pdfpcnotes@currentframenotes@\thepdfpcnotes@currentframenotes\endcsname{\unexpanded{#1}}%
+		\stepcounter{pdfpcnotes@currentframenotes}%
+
+		% write note to file
+		\immediate\write\pdfpcnotesfile{\unexpanded{#1}}%
+	\fi
 }
 % close file on \begin{document}
 \AtEndDocument{%
