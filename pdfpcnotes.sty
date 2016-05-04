@@ -1,5 +1,11 @@
 
-\ProvidesPackage{pdfpcnotes}
+\ProvidesPackage%
+	{pdfpcnotes}%
+	[2016/05/04 \space ver 0.2 \space To generate notes to use with pdfpc]
+
+\RequirePackage{kvoptions}
+\DeclareStringOption{fontsize}[32130]
+\ProcessKeyvalOptions*\relax
 
 % create a new file handle
 \newwrite\pdfpcnotesfile
@@ -7,6 +13,12 @@
 % open file on \begin{document}
 \AtBeginDocument{%
 	\immediate\openout\pdfpcnotesfile\jobname.pdfpc\relax
+	\immediate\write\pdfpcnotesfile{[file]}
+	\immediate\write\pdfpcnotesfile{\jobname.pdf}
+	\ifx\pdfpcnotes@fontsize\@empty
+	\else
+		\immediate\write\pdfpcnotesfile{[font_size]^^J\pdfpcnotes@fontsize}
+	\fi
 	\immediate\write\pdfpcnotesfile{[notes]}
 }
 % define a # http://tex.stackexchange.com/a/37757/10327
