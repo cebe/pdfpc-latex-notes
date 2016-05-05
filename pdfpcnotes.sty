@@ -72,7 +72,11 @@
 		\stepcounter{pdfpcnotes@currentframenotes}%
 
 		% write note to file
-		\immediate\write\pdfpcnotesfile{\unexpanded{#1}}%
+		\begingroup
+			\def\\{^^J}
+			\def\par{^^J^^J}
+			\immediate\write\pdfpcnotesfile{#1}%
+		\endgroup
 	\fi
 }
 % close file on \begin{document}
