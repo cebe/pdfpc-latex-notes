@@ -21,7 +21,7 @@
 % additionally writes notes to file in pdfpc readable format
 \newcommand{\pnote}[1]{%
 	% keep normal notes working
-	\note{#1}%
+	\note{{\par #1}}%
 
 	% if frame changed - write a new header
 	\ifdim\theframenumber pt>\lastframenumber pt
