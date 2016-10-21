@@ -52,46 +52,45 @@
 \newcommand{\pnote}[1]{%
 	% keep normal notes working
 	\note{#1}%
-
+%
 	% if frame changed - write a new header
 	\ifdim\theframenumber pt>\pdfpcnotes@lastframenumber pt
-		\global\edef\pdfpcnotes@lastframenumber{\theframenumber}
-		\setcounter{pdfpcnotes@currentframenotes}{0}
-		\begingroup
-			\let\#\hashchar
+		\global\edef\pdfpcnotes@lastframenumber{\theframenumber}%
+		\setcounter{pdfpcnotes@currentframenotes}{0}%
+		\begingroup%
+			\let\#\hashchar%
 			\immediate\write\pdfpcnotesfile{\#\#\# \theframenumber}%
-		\endgroup
-	\fi
-
+		\endgroup%
+	\fi%
+%
 	% check if note was already stored
-	\pdfpcnotes@noteexistsfalse
+	\pdfpcnotes@noteexistsfalse%
 	\forloop{pdfpcnotes@checkifnoteexists}{0}{%
 		\value{pdfpcnotes@checkifnoteexists} < \value{pdfpcnotes@currentframenotes}%
-	}{
+	}{%
 		\ifnum\pdf@strcmp{\unexpanded{#1}}{\csname pdfpcnotes@currentframenotes@\thepdfpcnotes@checkifnoteexists\endcsname}=0
-			\pdfpcnotes@noteexiststrue
-			\setcounter{pdfpcnotes@checkifnoteexists}{\value{pdfpcnotes@currentframenotes}}
-		\else
-		\fi
-	}
-
+			\pdfpcnotes@noteexiststrue%
+			\setcounter{pdfpcnotes@checkifnoteexists}{\value{pdfpcnotes@currentframenotes}}%
+		\else%
+		\fi%
+	}%
+%
 	% and then, only if the note was not stored
-	\ifpdfpcnotes@noteexists
-	\else
+	\ifpdfpcnotes@noteexists%
+	\else%
 		% add note in stored notes
 		\expandafter\global\expandafter\def\csname pdfpcnotes@currentframenotes@\thepdfpcnotes@currentframenotes\endcsname{\unexpanded{#1}}%
 		\stepcounter{pdfpcnotes@currentframenotes}%
-
+%
 		% write note to file
-		\begingroup
-			\def\\{^^J}
-			\def\par{^^J^^J}
+		\begingroup%
+			\def\\{^^J}%
+			\def\par{^^J^^J}%
 			\immediate\write\pdfpcnotesfile{#1}%
-		\endgroup
-	\fi
+		\endgroup%
+	\fi%
 }
 % close file on \begin{document}
 \AtEndDocument{%
 	\immediate\closeout\pdfpcnotesfile
 }
-
