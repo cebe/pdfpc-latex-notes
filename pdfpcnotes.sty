@@ -1,5 +1,9 @@
 \ProvidesPackage{pdfpcnotes}
 
+\newif\ifpdfpcnotes@formatting
+\DeclareOption{formatting}{\pdfpcnotes@formattingtrue}
+\ProcessOptions\relax
+
 % create a new file handle
 \newwrite\pdfpcnotesfile
 
@@ -9,10 +13,14 @@
 	\immediate\write\pdfpcnotesfile{[notes]}
 }
 % define a # http://tex.stackexchange.com/a/37757/10327
+% also define a \
 \begingroup
 	\catcode`\#=12
 	\gdef\hashchar{#}%
-\endgroup
+	\catcode `\|=0
+	\catcode `\\=11
+	|gdef|bschar{\}
+|endgroup
 
 
 \def\lastframenumber{0}
@@ -38,5 +46,8 @@
 % close file on \begin{document}
 \AtEndDocument{%
 	\immediate\closeout\pdfpcnotesfile
+	\ifpdfpcnotes@formatting
+	\immediate\write18{sed -i 's/\bschar\bschar\bschar\bschar/\bschar n/g' \jobname.pdfpc}
+		\immediate\write18{sed -i 's/\bschar\bschar par /\bschar n\bschar n/g' \jobname.pdfpc}
+	\fi
 }
-

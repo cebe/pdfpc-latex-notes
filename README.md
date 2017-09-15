@@ -10,7 +10,7 @@ Usage
 -----
 
 Download [pdfpcnotes.sty](https://raw.github.com/cebe/pdfpc-latex-notes/master/pdfpcnotes.sty)
-from github and put it somewhere where latex can find it.  
+from github and put it somewhere where latex can find it.
 The same directory as your `.tex` file will work.
 
 Add `\usepackage{pdfpcnotes}` somewhere before `\begin{document}` in your `.tex`-file.
@@ -21,6 +21,11 @@ Behavior will be the same but it will additionally write notes to file in pdfpc 
 When running for example `pdflatex` you will end up with an additional `.pdfpc` file that
 will automatically be recognized by pdfpc and displays your notes nicely in the notes section on your control screen.
 
+Options
+-------
+
+- `formatting`: Automatically post-process the generated file to fix
+  newline and paragraph formatting. (requires `-shell-escape`)
 
 Anything not working yet?
 -------------------------
