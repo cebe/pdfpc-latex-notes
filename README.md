@@ -21,6 +21,14 @@ Behavior will be the same but it will additionally write notes to file in pdfpc 
 When running for example `pdflatex` you will end up with an additional `.pdfpc` file that
 will automatically be recognized by pdfpc and displays your notes nicely in the notes section on your control screen.
 
+### Options
+
+It is possible to give the following options for `\usagepackage`:
+
+* `duration=N`: Set the duration in minutes. See `--duration`
+* `lastminutes=N`: pdfpc will warn during the last N minute. See `--last-minutes`.
+* `starttime=HH:MM`: Set the start time of the presentation. See `--start-time`.
+* `endtime=HH:MM`: Set the end time of the presentation. See `--end-time`.
 
 Anything not working yet?
 -------------------------

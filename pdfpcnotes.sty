@@ -1,12 +1,38 @@
 \ProvidesPackage{pdfpcnotes}
 
+% Handling of kv parameters.
+% We have the following options, that all take time in the HH:MM format
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=PDFPC,
+  prefix=PDFPC@
+}
+\DeclareStringOption{duration}
+\DeclareStringOption{starttime}
+\DeclareStringOption{endtime}
+\DeclareStringOption{lastminutes}
+
+\ProcessKeyvalOptions*
+
+% Small macro to make inserting options easier.
+\newcommand\PDFPC@option[2]{
+  \ifx#2\@empty\else
+    \immediate\write\pdfpcnotesfile{[#1]}%
+    \immediate\write\pdfpcnotesfile{#2}%
+  \fi
+}
+
 % create a new file handle
 \newwrite\pdfpcnotesfile
 
 % open file on \begin{document}
 \AtBeginDocument{%
 	\immediate\openout\pdfpcnotesfile\jobname.pdfpc\relax
-	\immediate\write\pdfpcnotesfile{[notes]}
+ \PDFPC@option{duration}{\PDFPC@duration}
+ \PDFPC@option{start_time}{\PDFPC@starttime}
+ \PDFPC@option{end_time}{\PDFPC@endtime}
+ \PDFPC@option{last_minutes}{\PDFPC@lastminutes}
+  \immediate\write\pdfpcnotesfile{[notes]}
 }
 % define a # http://tex.stackexchange.com/a/37757/10327
 \begingroup
