@@ -9,5 +9,5 @@ CHANGELOG for pdfpc-latex-notes package
 1.0.0 released on Oct 31, 2016
 ------------------------------
 
-Initial Release Version 1.0. The initial release was much earlier, but from this date on
-there is a versioning scheme and official releases :)
+Initial Release Version 1.0. The initial release was much earlier (June 15, 2013),
+but from this date on there is a versioning scheme and official releases :)
