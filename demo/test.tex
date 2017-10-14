@@ -1,0 +1,56 @@
+\documentclass{beamer}
+
+% The presentation is supposed to last 30 minutes, starting at 1PM.
+% pdfpc will give a warning for the last 5 minutes of the
+% presentation.
+\usepackage[duration=30,starttime=13:00,lastminutes=5]{../pdfpcnotes}
+
+\begin{document}
+
+% A simple slide with a note.
+\begin{frame}
+  \frametitle{First slide}
+  The notes will show some text corresponding to the first slide.
+  \pnote{This note corresponds to slide 1}
+\end{frame}
+
+% pdfpcnotes also understands overlays, but it shows the same text for
+% all overlays of a slide.
+\begin{frame}<1-2>[label=myitems]
+  \frametitle{Slides with overlays}
+  Now let's list three items:
+  \begin{itemize}
+  \item<1-> Item 1
+  \item<2-> Item 2
+  \item<3-> Item 3
+  \end{itemize}
+  \pnote{The items to discuss are:
+
+    - Item 1
+
+    - Item 2
+
+    Later on, also:
+
+    - Item 3
+  }
+\end{frame}
+
+% The package does the right thing if a slide is inserted in the
+% middle of an overlay sequence.
+\begin{frame}
+  \frametitle{Some slide in between}
+  Did you know cookies are nice?
+  \pnote{The list on the previous slide wasn't finished, but first we
+    have something else to say.}
+\end{frame}
+
+% Continue the overlay from before.
+\againframe<3>{myitems}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
