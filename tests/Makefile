@@ -1,5 +1,5 @@
 # pdflatex options
-PDFLO=-halt-on-error -file-line-error -shell-escape
+PDFLO=-halt-on-error -file-line-error -shell-escape -interaction=nonstopmode
 
 TEXINPUTS=.::../..
 OUTPUTDIR=out
