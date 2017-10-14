@@ -1,6 +1,8 @@
 pdfpc-latex-notes
 =================
 
+[![Build Status](https://travis-ci.org/cebe/pdfpc-latex-notes.svg?branch=master)](https://travis-ci.org/cebe/pdfpc-latex-notes)
+
 This is a Latex Package that allows creating [pdfpc](http://davvil.github.io/pdfpc/)
 compatible notes file directly from your latex presentation `\note`s.
 
