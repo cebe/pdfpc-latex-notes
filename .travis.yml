@@ -1,4 +1,8 @@
 
+sudo: required
+
+before_install:
+  - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-latex-base texlive-lang-english texlive-lang-german texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended
 
 script:
   cd tests && make test
