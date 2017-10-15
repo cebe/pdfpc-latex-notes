@@ -30,3 +30,7 @@
 *.vrb
 *.xdy
 *.tdo
+*.fls
+demo/test.pdf
+demo/test.pdfpc
+auto/
