@@ -3,7 +3,7 @@ pdfpc-latex-notes
 
 [![Build Status](https://travis-ci.org/cebe/pdfpc-latex-notes.svg?branch=master)](https://travis-ci.org/cebe/pdfpc-latex-notes)
 
-This is a Latex Package that allows creating [pdfpc](http://davvil.github.io/pdfpc/)
+This is a LaTeX Package that allows creating [pdfpc](http://davvil.github.io/pdfpc/)
 compatible notes file directly from your latex presentation `\note`s.
 
 It was created as a result from a [question on stackoverflow](http://tex.stackexchange.com/questions/119191/extract-all-note-tags-from-beamer-as-a-simple-text-file/119267#119267).
@@ -22,6 +22,8 @@ Behavior will be the same but it will additionally write notes to file in pdfpc 
 
 When running for example `pdflatex` you will end up with an additional `.pdfpc` file that
 will automatically be recognized by pdfpc and displays your notes nicely in the notes section on your control screen.
+
+Check the [demo/](./demo/) folder for an example `.tex` file.
 
 ### Options
 
