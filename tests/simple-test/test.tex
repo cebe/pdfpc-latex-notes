@@ -1,0 +1,21 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{pdfpcnotes}
+
+\begin{document}
+\begin{frame}{Frame 1}
+  \pnote{Note for Frame 1}
+\end{frame}
+\begin{frame}[label=frame2]{Frame 2}
+  Overlay 1 on Frame 2
+  \pnote{Note for Frame 2}
+  \pause % this will generate two overlays, notes are shown on both
+  Overlay 2 on Frame 2
+  \pnote{Another Note for Frame 2}
+\end{frame}
+\begin{frame}{Frame 3}
+\end{frame}
+\againframe{frame2}
+\end{document}
+
