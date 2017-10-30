@@ -5,6 +5,7 @@ CHANGELOG for pdfpc-latex-notes package
 -----------------------
 
 - Enh #11: Add the possibility to set pdfpc configuration options "duration", "last minutes", "start" and "end" times (@Drup)
+- Enh #19: Add the pdfpc configuration option "fontsize" (@dudasfau)
 
 1.0.0 released on Oct 31, 2016
 ------------------------------
