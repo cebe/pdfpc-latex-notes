@@ -45,11 +45,12 @@
 
 \def\lastframenumber{0}
 
-% define command \pnote{} that works like note but
+% define command \pnote[]{} that works like note but
 % additionally writes notes to file in pdfpc readable format
-\newcommand{\pnote}[1]{%
+% pnote will pass any optional arguments [] directly to note, e.g. \pnote[item]{}
+\newcommand{\pnote}[2][]{%
 	% keep normal notes working
-	\note{#1}%
+	\note[#1]{#2}%
 
 	% if frame changed - write a new header
 	\ifdim\theframenumber pt>\lastframenumber pt
@@ -61,7 +62,7 @@
 	\fi
 
 	% write note to file
-	\immediate\write\pdfpcnotesfile{\unexpanded{#1}}%
+	\immediate\write\pdfpcnotesfile{\unexpanded{#2}}%
 }
 % close file on \begin{document}
 \AtEndDocument{%
