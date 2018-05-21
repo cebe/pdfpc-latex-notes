@@ -63,7 +63,7 @@
 	% write note to file
 	\immediate\write\pdfpcnotesfile{\unexpanded{#1}}%
 }
-% close file on \begin{document}
+% close file on \end{document}
 \AtEndDocument{%
 	\immediate\closeout\pdfpcnotesfile
 }
