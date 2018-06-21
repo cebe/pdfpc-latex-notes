@@ -52,11 +52,11 @@
 	\note{#1}%
 
 	% if frame changed - write a new header
-	\ifdim\theframenumber pt>\lastframenumber pt
-		\let\lastframenumber\theframenumber
+	\ifdim\thepage pt>\lastframenumber pt
+		\let\lastframenumber\thepage
 		\begingroup
 			\let\#\hashchar
-			\immediate\write\pdfpcnotesfile{\#\#\# \theframenumber}%
+			\immediate\write\pdfpcnotesfile{\#\#\# \thepage}%
 		\endgroup
 	\fi
 
