@@ -27,7 +27,7 @@ Check the [demo/](./demo/) folder for an example `.tex` file.
 
 ### Options
 
-It is possible to give the following options for `\usagepackage`:
+It is possible to give the following options for `\usepackage`:
 
 * `duration=N`: Set the duration in minutes. See `--duration`
 * `lastminutes=N`: pdfpc will warn during the last N minute. See `--last-minutes`.
