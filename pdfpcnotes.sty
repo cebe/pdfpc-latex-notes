@@ -43,25 +43,32 @@
 \endgroup
 
 
-\def\lastframenumber{0}
+\global\def\lastframenumber{0}
+
 
 % define command \pnote{} that works like note but
 % additionally writes notes to file in pdfpc readable format
-\newcommand{\pnote}[1]{%
+\newcommand<>{\pnote}[2][]{%
 	% keep normal notes working
-	\note{#1}%
 
+	\note#3[#1]{#2}%
+	
 	% if frame changed - write a new header
-	\ifdim\theframenumber pt>\lastframenumber pt
-		\let\lastframenumber\theframenumber
+	\ifdim\theframenumber pt >\lastframenumber pt
+
+		\global\edef\lastframenumber{\theframenumber}
+
 		\begingroup
 			\let\#\hashchar
 			\immediate\write\pdfpcnotesfile{\#\#\# \theframenumber}%
 		\endgroup
-	\fi
+		
 
+	\fi
 	% write note to file
-	\immediate\write\pdfpcnotesfile{\unexpanded{#1}}%
+	% inside frame there's no point doing it twice if there's an overlay
+	\only<1>{\immediate\write\pdfpcnotesfile{\unexpanded{#2}}}%
+
 }
 % close file on \end{document}
 \AtEndDocument{%
